@@ -7,14 +7,12 @@ def cache(func: Callable) -> Callable:
     cashe_dict = {}
     functools.wraps(func)
 
-    def wrapper(*args, **kwargs) -> dict:
-        keyword = ""
-        for arg in args:
-            keyword += str(arg)
-        if keyword in cashe_dict.keys():
+    def wrapper(*args) -> dict:
+        if args in cashe_dict:
             print("Getting from cache ")
+            return cashe_dict[args]
         else:
             print("Calculating new result")
-            cashe_dict[keyword] = func(*args, **kwargs)
-        return cashe_dict[keyword]
+            cashe_dict[*args] = func(*args)
+            return func(*args)
     return wrapper
