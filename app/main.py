@@ -5,8 +5,8 @@ from typing import Callable
 def cache(func: Callable) -> Callable:
     # Write your code here
     cashe_dict = {}
-    functools.wraps(func)
 
+    @functools.wraps(func)
     def wrapper(*args) -> dict:
         if args in cashe_dict:
             print("Getting from cache ")
