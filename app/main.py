@@ -1,5 +1,5 @@
 import functools
-from typing import Callable
+from typing import Callable, Any
 
 
 def cache(func: Callable) -> Callable:
@@ -7,7 +7,7 @@ def cache(func: Callable) -> Callable:
     cashe_dict = {}
 
     @functools.wraps(func)
-    def wrapper(*args, **kwargs) -> dict:
+    def wrapper(*args, **kwargs) -> Any:
         keyword = ""
         for arg in args:
             keyword += str(arg)
